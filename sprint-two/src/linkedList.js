@@ -69,4 +69,10 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+
+  1) adding Tail and removing Head = constant / O(1);
+  2) checking if target with contains = linear / O(n);
  */
+
+
+
