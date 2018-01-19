@@ -13,29 +13,48 @@ var LinkedList = function() {
     if (list.tail === null) {
       list.tail = newNode;
     } else {
-      list.tail = newNode;
+      list.tail.next = newNode;
+      list.tail = list.tail.next;
+    }
+
+    if (list.head === null) {
+      list.head = newNode;
     }
   };
 
   list.removeHead = function() {
     // remove the item from the list
     if (list.head !== null) {
-      var currentHead = list.head;
-      delete list.head;
-      list.head = node.next; //node.node.next ?
-      return currentHead;
+      //set current head value
+      var currentHead = list.head.value;
+      //reassigned link to next head
+      list.head = list.head.next;
     }
-    // update the head to the next in line
-    // update list.head
     // return the value
+    return currentHead;
   };
 
   list.contains = function(target) {
     // check each item if its our target
     // check node.value
     // return boolean
-  };
+    
+    // while list.node.next is not null
+    // check list.node.value equals target
+    // return false outside of while loop
+    var current = list.head;
 
+    while (current) {
+      if (current.value === target) {
+        return true;
+      } else {
+        current = current.next;
+      }
+    }
+
+    return false;
+  };
+  
   return list;
 };
 
