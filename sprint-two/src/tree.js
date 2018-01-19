@@ -1,7 +1,6 @@
 var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
-  newTree.storage = {};
 
   // your code here
   newTree.children = []; // fix me
@@ -13,22 +12,33 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  // make an object to put the value in
-  // {value: 1, child: []}
-  // var newChild = [];
-  // this.value = value;
-  this.children.push({value: value, children: []}); 
-  // we can use push to add a node to the new tree
-  // set the value to the target node  
+  // create a new instance and have access to tree methods
+  var newChild = Tree(value);
   
-  //this.childen.push(value);
-
-  // parent -- child
-  // var parent = obj
-  // parent.children.addChild
+  // we can use push to add a node to the new tree
+  // set the value to the target node 
+  this.children.push(newChild); 
+   
 };
 
 treeMethods.contains = function(target) {
+  // base case: if value !== target && children.length = 0
+  // recursion case: check if childs value = target
+  // if not, it checks to see if it has any children
+  
+  if (this.value !== target && this.children.length === 0) {
+    return false;
+  } else if (this.value === target) {
+    return true;
+  } else {
+    for (var i = 0; i < this.children.length; i++) {
+      // if (this.children[i].children.length > 0) {
+      return this.children[i].contains(target);
+      // }
+    }
+  }
+  // we need an else if to check if the length > 0
+  // for loop should go into the next layer down
 };
 
 
