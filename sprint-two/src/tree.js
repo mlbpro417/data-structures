@@ -38,19 +38,21 @@ treeMethods.contains = function(target) {
   //   }
   // }
 
+  var status = false;
   
-
   var checkNode = function(node) {
     if (node.value === target) {
-      return true;
-    } else {
+      status = true;
+    } 
+    if (node.children) {
       for (var i = 0; i < node.children.length; i++) { 
         checkNode(node.children[i]);
       }
-      return false;
     }
+    
   };
-  checkNode();
+  checkNode(this);
+  return status;
   // // we need an else if to check if the length > 0
   // // for loop should go into the next layer down
   // checkNode(this.children);
@@ -62,4 +64,6 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  1) AddChild = constant / O(1);
+  2) Contains lookup = Best Case: constant / Worst Case: Linear;
  */
