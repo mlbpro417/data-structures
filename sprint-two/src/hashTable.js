@@ -1,4 +1,8 @@
-
+//    [0,1,2,3] = 4 set limit of array
+//    use hashing function to generate an index
+//    [[],1,2,3] = check to see if there is a bucket at that index; if not make a bucket
+//    [[['hack', 'reactor'], ['javi', 'enriquez']],1,2,3] = need to check if the new key exists in the bucket 
+//    use the buckets index to check if the values exist
 
 var HashTable = function() {
   this._limit = 8; // length 8
@@ -13,16 +17,16 @@ HashTable.prototype.insert = function(k, v) {
     this._storage[index].push([k, v]);
   } else if (Array.isArray(this._storage[index])) {
     for (var i = 0; i < this._storage[index].length; i++) {
+      // we only need to check the [0] index of that array for the key
       var key = this._storage[index][i][0];
       if (key === k) {
         this._storage[index][i][1] = v;
-      }
+        // does the key already exist? if so, then overwrite value
+      } 
     } 
-  } else {
+
     this._storage[index].push([k, v]);
   }
-  // // we only need to check the [0] index of that array for the key
-  // does the key already exist? if so, then overwrite value
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -50,14 +54,11 @@ HashTable.prototype.remove = function(k) {
   } 
 };
 
-// new HashTable();
+//new HashTable();
 
 /*
  * Complexity: What is the time complexity of the above functions?
+
+  1) insert / Remove / Retrieve = Best Cases: Constant / O(1); Worst Cases: Linear / O(n);
  */
 
-//    [0,1,2,3] = 4 set limit of array
-//    use hashing function to generate an index
-//    [[],1,2,3] = check to see if there is a bucket at that index; if not make a bucket
-//    [[['hack', 'reactor'], ['javi', 'enriquez']],1,2,3] = need to check if the new key exists in the bucket 
-//    use the buckets index to check if the values exist
